@@ -26,7 +26,59 @@ VIEW CODE HERE:https://github.com/GordonWillingham/Data-Science-Challenge/blob/m
 
 For this question you’ll need to use SQL. Follow this link (https://www.w3schools.com/SQL/TRYSQL.ASP?FILENAME=TRYSQL_SELECT_ALL) to access the data set required for the challenge. Please use queries to answer the following questions. Paste your queries along with your final numerical answers below.
 
-1. How many orders were shipped by Speedy Express in total?\
-2. What is the last name of the employee with the most orders?\
-3. What product was ordered the most by customers in Germany?\
+1. How many orders were shipped by Speedy Express in total?
+2. What is the last name of the employee with the most orders?
+3. What product was ordered the most by customers in Germany?
+
+## Answers:
+
+1. How many orders were shipped by Speedy Express in total? 54
+SELECT * FROM [Orders] WHERE ShipperID=1;
+Or
+
+CREATE VIEW Shipper_Orders AS
+SELECT Orders.OrderID, Orders.ShipperID, Shippers.ShipperName
+FROM Orders
+JOIN Shippers
+ON Shippers.ShipperID=Orders.ShipperID;
+
+SELECT COUNT(*) FROM [Shipper_Orders]
+WHERE ShipperName = ‘Speedy Express’;
+
+2. What is the last name of the employee with the most orders?
+   Employee: Peacock
+   Most orders:40
+   CREATE VIEW Employee_Orders AS
+SELECT Orders.EmployeeID, Employees.LastName, Orders.OrderID
+FROM Orders
+JOIN Employees
+ON Employees.EmployeeID=Orders.EmployeeID;
+
+SELECT LastName, COUNT(*)
+FROM Employee_Orders
+GROUP BY LastName
+ORDER BY COUNT(*) desc;
+
+3. What product was ordered the most by customers in Germany?
+   Product: Camembert Pierrot
+   Quantity: 40
+   Orders: 300
+   Total Ordered:12000
+CREATE VIEW Products_Ordered AS
+SELECT Orders.OrderID, Customers.Country, OrderDetails.Quantity, Products.ProductName
+FROM Orders, OrderDetails
+JOIN Customers ON Orders.CustomerID=Customers.CustomerID
+JOIN Products ON OrderDetails.ProductID=Products.ProductID
+WHERE Country=‘Germany’;
+
+CREATE VIEW Product_Orders AS
+SELECT ProductName, Quantity, COUNT(*) as ‘Orders’
+FROM Products_Ordered
+GROUP BY ProductName;
+
+SELECT ProductName, Quantity, Orders, (Quantity * Orders) As TotalOrders
+FROM Product_Orders
+ORDER BY TotalOrders desc
+LIMIT 1;
+
 
