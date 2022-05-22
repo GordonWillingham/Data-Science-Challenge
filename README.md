@@ -21,8 +21,7 @@ total_items_sold<- sum(Shopify$total_items)
 total_order_value/total_items_sold  #Average Order Value of Items sold 
 3. The Average Order Value (AOV) is: $357.92
 
-VIEW CODE HERE
-
+VIEW CODE HERE:https://github.com/GordonWillingham/Data-Science-Challenge/blob/main/Shopify%20Code%20Test.Rmd
 ## Question 2: 
 
 For this question you’ll need to use SQL. Follow this link (https://www.w3schools.com/SQL/TRYSQL.ASP?FILENAME=TRYSQL_SELECT_ALL) to access the data set required for the challenge. Please use queries to answer the following questions. Paste your queries along with your final numerical answers below.
