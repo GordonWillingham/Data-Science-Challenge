@@ -1,0 +1,43 @@
+---
+title: "Shopify Code Test"
+author: "Gordon Willingham"
+date: '2022-05-22'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+```{r Load Packages}
+library(tidyverse)
+library(rmarkdown)
+library(tinytex)
+library(viridis)
+library(viridisLite)
+
+```
+
+```{r Shopify Data Import, echo=TRUE}
+getwd()
+Shopify <- read.csv('data/2019 Winter Data Science Intern Challenge Data Set - Sheet1.csv', header=TRUE, stringsAsFactors = FALSE)
+
+glimpse(Shopify)
+
+```
+
+## Calculating Average Order Value
+
+
+```{r Calculating Average Order Value, echo=TRUE}
+
+total_order_value <-sum(Shopify$order_amount)
+total_items_sold <-sum(Shopify$total_items)
+
+total_order_value/total_items_sold
+
+
+
+```
+
