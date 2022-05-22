@@ -10,6 +10,18 @@
 2. What metric would you report for this dataset?
 3. What is its value?
 
+## Answers: 
+
+1. I calculated the incorrect AOV calculation of 3145.13 by finding the quotient of sum of order_amount divided by 5,000 total orders. To find the appropriate Average Order Value you would need to find the quotient of sum of order_amount divided by the sum of total_items. 
+2. To calculate the correct Average Order Value, the reporting metrics would be the quotient of 'order_amount' divided by 'total_items':
+Shopify <- read.csv(‘data/2019 Winter Data Science Intern Challenge Data Set - Sheet1.csv', header=TRUE, stringsAsFactors = FALSE)
+total_order_value <- sum(Shopify$order_amount)
+total_items_sold<- sum(Shopify$total_items)
+
+total_order_value/total_items_sold  #Average Order Value of Items sold 
+3. The Average Order Value (AOV) is: $357.92
+
+VIEW CODE HERE
 
 ## Question 2: 
 
